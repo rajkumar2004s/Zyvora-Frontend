@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 import MainLayout from "./layouts/MainLayout";
 
@@ -10,10 +11,15 @@ import Cart from "./pages/Cart";
 import Wishlist from "./components/WishList";
 import MyOrders from "./pages/Orders";
 import Product from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
+import ProductDetails from "./pages/productDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
+  // Configure axios defaults for API URL and auth header
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  axios.defaults.baseURL = API_URL;
+  const token = localStorage.getItem("token");
+  if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   return (
     <BrowserRouter>
       <Routes>

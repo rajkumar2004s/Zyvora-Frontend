@@ -128,11 +128,7 @@ function Register() {
               {loading ? "Creating Account..." : "Register"}
             </button>
 
-            {error && (
-              <p className="text-red-500 text-center mt-4">
-                Please fill all fields
-              </p>
-            )}
+            {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
             <p className="text-center mt-6 text-sm">
               Already have an account?{" "}
