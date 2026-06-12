@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useProducts } from "../context/productContext";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 function Products() {
   const [searchParams] = useSearchParams();
@@ -10,6 +11,7 @@ function Products() {
   const search = searchParams.get("search");
 
   const { products = [], loading, fetchProducts } = useProducts();
+
   useEffect(() => {
     const filters = {};
 
@@ -27,19 +29,17 @@ function Products() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        <h1 className="text-2xl font-semibold">Loading...</h1>
+        <Loader />
       </div>
     );
   }
 
   return (
-    <div className="max-w-[1600px] mx-auto px-6 py-8">
-      <div className="flex justify-between items-center mb-8">
+    <div className="px-20">
+      <div className="flex justify-between items-center pl-5 mt-4">
         <h1 className="text-3xl font-bold">
           {category || search || "All Products"}
         </h1>
-
-        <p className="text-gray-500">{products.length} Products</p>
       </div>
 
       {products.length === 0 ? (
@@ -49,7 +49,7 @@ function Products() {
           </h2>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}

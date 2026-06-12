@@ -12,10 +12,11 @@ import MyOrders from "./pages/Orders";
 import Product from "./pages/Products";
 import ProductDetails from "./pages/productDetails";
 import AdminDashboard from "./pages/AdminDashboard";
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Auth Pages */}
         <Route path="/login" element={<Login />} />

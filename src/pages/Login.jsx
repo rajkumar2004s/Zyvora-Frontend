@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import axios from "axios";
 import AuthLayout from "../layouts/authLAyout";
+import { TiStarHalfOutline } from "react-icons/ti";
 
 function Login() {
   const navigate = useNavigate();
@@ -59,11 +60,16 @@ function Login() {
 
   return (
     <AuthLayout>
-      <div className="flex justify-center items-center min-h-screen px-4">
+      <div className="flex justify-center items-center min-h-screen  w-full">
         <div className="bg-white border shadow-xl p-8 rounded-xl w-full max-w-md">
           <div className="text-center">
-            <h1 className="text-3xl font-bold">Zyvora</h1>
-            <p className="text-gray-500 mt-2">Login to your account</p>
+            <h1 className="text-3xl font-bold text-[#051647]">
+              <TiStarHalfOutline />
+              Zyvora
+            </h1>
+            <p className="text-gray-500 mt-2 font-medium">
+              Login to your account
+            </p>
           </div>
 
           <div className="mt-8">

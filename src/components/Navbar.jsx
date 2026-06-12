@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FiSearch, FiUser, FiHeart, FiShoppingBag } from "react-icons/fi";
 import { useState } from "react";
+import { TiStarHalfOutline } from "react-icons/ti";
 
 function Navbar() {
   const [search, setSearch] = useState("");
@@ -11,9 +12,15 @@ function Navbar() {
 
   const userName = localStorage.getItem("userName");
 
-  const handleSearch = (e) => {
-    if (e.key === "Enter" && search.trim()) {
-      navigate(`/products?search=${search}`);
+  const handleChange = (e) => {
+    const value = e.target.value;
+
+    setSearch(value);
+
+    if (value.trim() === "") {
+      navigate("/");
+    } else {
+      navigate(`/products?search=${value}`);
     }
   };
 
@@ -29,13 +36,14 @@ function Navbar() {
     <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/">
-            <h1 className="text-3xl font-bold text-pink-600">Zyvora</h1>
+          <Link to="/" className="flex items-center gap-1">
+            <TiStarHalfOutline className="text-4xl  text-[#051647]" />
+
+            <h1 className="text-3xl font-bold text-[#051647]">Zyvora</h1>
           </Link>
 
           {/* Categories */}
-          <div className="hidden lg:flex items-center gap-10 font-semibold text-sm">
+          <div className="hidden lg:flex items-center gap-10 px-6 font-semibold text-sm">
             <Link to="/products?category=MEN">MEN</Link>
             <Link to="/products?category=WOMEN">WOMEN</Link>
             <Link to="/products?category=BEAUTY">BEAUTY</Link>
@@ -46,21 +54,20 @@ function Navbar() {
           </div>
 
           {/* Search */}
-          <div className="hidden md:flex items-center bg-gray-100 rounded-md px-3 py-3 w-[450px]">
+          <div className="hidden md:flex items-center bg-gray-100 rounded-md px-3 py-3 w-[400px] border border-gray-100">
             <FiSearch className="text-gray-500 text-lg" />
 
             <input
               type="text"
               placeholder="Search for products, brands and more"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={handleSearch}
+              onChange={handleChange}
               className="bg-transparent outline-none px-3 w-full text-sm"
             />
           </div>
 
           {/* Right Side */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-8 px-2">
             {/* Profile */}
             <div className="relative group">
               <div className="flex flex-col items-center cursor-pointer">
@@ -68,26 +75,25 @@ function Navbar() {
                 <span className="text-xs font-semibold">Profile</span>
               </div>
 
-              {/* Dropdown */}
               <div className="absolute right-0 top-12 w-72 bg-white shadow-xl border rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="p-5">
                   {isLoggedIn ? (
                     <>
-                      <h3 className="font-bold text-lg">Hello {userName}</h3>
+                      <h3 className="font-bold text-lg">
+                        Hello{" "}
+                        {userName?.charAt(0)?.toUpperCase() +
+                          userName?.slice(1)}
+                      </h3>
 
                       <hr className="my-4" />
 
                       <div className="flex flex-col gap-3 text-sm">
-                        <Link to="/myorders" className="hover:font-semibold">
-                          Orders
-                        </Link>
-
                         <Link to="/wishlist" className="hover:font-semibold">
                           Wishlist
                         </Link>
 
-                        <Link to="/profile" className="hover:font-semibold">
-                          Profile
+                        <Link to="/cart" className="hover:font-semibold">
+                          Cart
                         </Link>
 
                         <button
@@ -108,14 +114,14 @@ function Navbar() {
 
                       <Link
                         to="/login"
-                        className="block mt-4 bg-pink-500 text-white text-center py-2 rounded-md"
+                        className="block mt-4 bg-[#051647] text-white text-center py-2 rounded-md"
                       >
                         Login
                       </Link>
 
                       <Link
                         to="/register"
-                        className="block mt-3 border text-center py-2 rounded-md"
+                        className="block mt-3 border border-[#051647] text-[#051647] text-center py-2 rounded-md"
                       >
                         Register
                       </Link>

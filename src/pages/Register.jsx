@@ -4,6 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import AuthLayout from "../layouts/authLAyout";
 import axios from "axios";
+import { TiStarHalfOutline } from "react-icons/ti";
 
 function Register() {
   const navigate = useNavigate();
@@ -54,8 +55,13 @@ function Register() {
       <div className="flex justify-center items-center min-h-screen w-full px-4">
         <div className="bg-white border shadow-xl p-6 md:p-8 rounded-xl text-slate-700 w-full max-w-md">
           <div className="text-center">
-            <h1 className="text-3xl font-bold">Zyvora</h1>
-            <p className="text-gray-500 mt-2">Create your account</p>
+            <h1 className="text-3xl font-bold text-[#051647]">
+              <TiStarHalfOutline />
+              Zyvora
+            </h1>
+            <p className="text-gray-500 mt-2 font-medium">
+              Create your account
+            </p>
           </div>
 
           <div className="mt-8">

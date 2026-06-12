@@ -1,7 +1,28 @@
 import ImageGRid from "../components/ImageGrid";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const categories = [
+    {
+      name: "Men",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200",
+      category: "MEN",
+    },
+    {
+      name: "Women",
+      image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200",
+      category: "WOMEN",
+    },
+    {
+      name: "Accessories",
+      image:
+        "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200",
+      category: "ACCESSORIES",
+    },
+  ];
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -49,6 +70,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       <ImageGRid />
       {/* Featured Categories */}
       <section className="py-12">
@@ -58,17 +80,27 @@ function Home() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">
-              <h1>MEN</h1>
-            </div>
+            {categories.map((item) => (
+              <Link
+                key={item.name}
+                to={`/products?category=${item.category}`}
+                className="relative h-80 rounded-2xl overflow-hidden group shadow-lg"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
 
-            <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">
-              <h1>WOMEN</h1>
-            </div>
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
 
-            <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">
-              Accessories
-            </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h1 className="text-white text-4xl font-bold tracking-widest">
+                    {item.name}
+                  </h1>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

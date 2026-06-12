@@ -1,70 +1,84 @@
-import { FiHeart } from "react-icons/fi";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 function ProductCard({ product }) {
-  const addToCart = () => {
+  const navigate = useNavigate();
+
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  const [isInCart, setIsInCart] = useState(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    return cart.some((item) => item._id === product._id);
+  });
 
-    const exists = cart.find((item) => item._id === product._id);
-
-    if (exists) {
-      alert("Already in Cart");
-      return;
-    }
-
-    cart.push(product);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    alert("Added to Cart");
+  const goToDetails = () => {
+    navigate(`/product/${product._id}`);
   };
 
-  const addToWishlist = () => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    const exists = wishlist.find((item) => item._id === product._id);
-
-    if (exists) {
-      alert("Already in Wishlist");
+  const handleCartAction = () => {
+    if (isInCart) {
+      navigate("/cart");
       return;
     }
 
-    wishlist.push(product);
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    const updatedCart = [...cart, product];
 
-    alert("Added to Wishlist");
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    setIsInCart(true);
   };
 
   return (
-    <div className="group bg-white">
-      <div className="relative overflow-hidden rounded-lg">
+    <div
+      onClick={goToDetails}
+      className="h-[400px] w-[250px] bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer"
+    >
+      {/* Image Section */}
+      <div className="relative h-[220px] bg-gray-100">
+        {!imgLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loader />
+          </div>
+        )}
+
         <img
           src={product.image_url}
           alt={product.name}
-          className="w-full h-[320px] object-cover"
+          onLoad={() => setImgLoaded(true)}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            imgLoaded ? "opacity-100" : "opacity-0"
+          }`}
         />
-
-        <button
-          onClick={addToWishlist}
-          className="absolute bottom-3 right-3 bg-white p-2 rounded-full shadow"
-        >
-          <FiHeart />
-        </button>
       </div>
 
-      <div className="pt-3">
-        <h3 className="font-bold">{product.name}</h3>
+      {/* Content */}
+      <div className="p-4 h-[180px] flex flex-col">
+        <h3 className="text-[22px] font-bold text-[#081a37] line-clamp-1">
+          {product.name}
+        </h3>
 
-        <p className="text-gray-500 text-sm">{product.category}</p>
+        <p className="mt-2 text-gray-400 text-[14px] line-clamp-2">
+          {product.description}
+        </p>
 
-        <p className="font-bold mt-2">₹{product.price}</p>
+        <div className="mt-auto flex items-center justify-between">
+          <p className="text-[20px] font-bold text-[#081a37]">
+            ${product.price}
+          </p>
 
-        <button
-          onClick={addToCart}
-          className="w-full mt-3 bg-pink-500 text-white py-2 rounded"
-        >
-          Add To Cart
-        </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCartAction();
+            }}
+            className="bg-[#07162A] text-white px-4 py-2 rounded-xl text-sm hover:opacity-90"
+          >
+            {isInCart ? "Go To Cart" : "Add To Cart"}
+          </button>
+        </div>
       </div>
     </div>
   );
