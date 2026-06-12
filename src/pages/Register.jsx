@@ -16,8 +16,6 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -36,7 +34,7 @@ function Register() {
       setError("");
       setLoading(true);
 
-      await axios.post(`${API_URL}/users/register`, {
+      await axios.post("/users/register", {
         name,
         email,
         password,

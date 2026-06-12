@@ -13,9 +13,7 @@ export function ProductProvider({ children }) {
 
       const query = new URLSearchParams(filters).toString();
 
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
-      const res = await axios.get(`${API_URL}/products?${query}`);
+      const res = await axios.get(`/products?${query}`);
       console.log("Products API Response:", res.data);
       console.log(res.data);
 

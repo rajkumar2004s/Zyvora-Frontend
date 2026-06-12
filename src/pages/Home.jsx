@@ -59,18 +59,11 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">
-              <img
-                src="https://images.pexels.com/photos/31371016/pexels-photo-31371016.png"
-                alt="Men"
-              />
+              <h1>MEN</h1>
             </div>
 
             <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">
-              <img
-                src="https://images.pexels.com/photos/31371017/pexels-photo-31371017.png"
-                alt="Women"
-                className="h-60"
-              />
+              <h1>WOMEN</h1>
             </div>
 
             <div className="bg-gray-200 h-60 rounded-lg flex items-center justify-center text-2xl font-semibold">

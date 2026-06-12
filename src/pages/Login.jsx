@@ -14,8 +14,6 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -34,7 +32,7 @@ function Login() {
       setError("");
       setLoading(true);
 
-      const res = await axios.post(`${API_URL}/users/login`, {
+      const res = await axios.post("/users/login", {
         email,
         password,
       });
