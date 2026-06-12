@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import axios from "axios";
-import AuthLayout from "../layouts/AuthLayout";
+import AuthLayout from "../layouts/authLAyout";
 
 function Login() {
   const navigate = useNavigate();

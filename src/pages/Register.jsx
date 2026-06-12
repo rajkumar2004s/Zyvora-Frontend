@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import AuthLayout from "../layouts/AuthLayout";
+import AuthLayout from "../layouts/authLAyout";
 import axios from "axios";
 
 function Register() {
