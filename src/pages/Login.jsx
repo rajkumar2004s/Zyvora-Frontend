@@ -46,8 +46,6 @@ function Login() {
       axios.defaults.headers.common["Authorization"] =
         `Bearer ${res.data.token}`;
 
-      alert(`Welcome ${res.data.user.name}`);
-
       navigate("/");
     } catch (err) {
       setError(

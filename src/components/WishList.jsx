@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
-
+  
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cart")) || [],
   );
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("wishlist")) || [];
     setWishlist(data);
   }, []);
-
+  
   const removeItem = (id) => {
     const updated = wishlist.filter((item) => item._id !== id);
-
+    
     setWishlist(updated);
     localStorage.setItem("wishlist", JSON.stringify(updated));
   };

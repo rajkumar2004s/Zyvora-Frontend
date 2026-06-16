@@ -44,12 +44,12 @@ function Navbar() {
 
           {/* Categories */}
           <div className="hidden lg:flex items-center gap-10 px-6 font-semibold text-sm">
-            <Link to="/products?category=MEN">MEN</Link>
-            <Link to="/products?category=WOMEN">WOMEN</Link>
+            <Link to="/products?category=FOOTWEAR">FOOTWEAR</Link>
             <Link to="/products?category=BEAUTY">BEAUTY</Link>
             <Link to="/products?category=SKIN">SKIN</Link>
             <Link to="/products?category=ACCESSORIES">ACCESSORIES</Link>
-            <Link to="/products?category=FOOTWEAR">FOOTWEAR</Link>
+            <Link to="/products?category=MEN">MEN</Link>
+            <Link to="/products?category=WOMEN">WOMEN</Link>
             <Link to="/products?category=GENZ">GENZ</Link>
           </div>
 

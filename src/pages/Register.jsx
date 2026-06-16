@@ -41,8 +41,6 @@ function Register() {
         password,
       });
 
-      alert("Account Created Successfully");
-
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Registration Failed");
