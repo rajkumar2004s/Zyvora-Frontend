@@ -50,7 +50,6 @@ function Cart() {
 
   return (
     <>
-      {/* Success Popup */}
       {showSuccess && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center w-[90%] max-w-md">
@@ -73,7 +72,7 @@ function Cart() {
 
       <div className="min-h-screen px-2 md:px-12 py-6">
         <h1 className="text-lg sm:text-2xl md:text-3xl pl-12 font-bold pb-4">
-          Shopping Cart 🛒 ({cartItems.length})
+          Shopping Cart : {cartItems.length}
         </h1>
 
         {cartItems.length === 0 && !showSuccess ? (

@@ -42,7 +42,6 @@ function Login() {
       localStorage.setItem("userId", res.data.user.id);
       localStorage.setItem("userName", res.data.user.name);
 
-      // Set default Authorization header for future requests
       axios.defaults.headers.common["Authorization"] =
         `Bearer ${res.data.token}`;
 

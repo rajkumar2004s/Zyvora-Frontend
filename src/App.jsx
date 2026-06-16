@@ -7,11 +7,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
-import Wishlist from "./components/WishList";
-import MyOrders from "./pages/Orders";
+import Wishlist from "./pages/WishList";
 import Product from "./pages/Products";
 import ProductDetails from "./pages/productDetails";
-import AdminDashboard from "./pages/AdminDashboard";
 import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
@@ -73,24 +71,6 @@ function App() {
           element={
             <MainLayout>
               <Profile />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/myorders"
-          element={
-            <MainLayout>
-              <MyOrders />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/admin"
-          element={
-            <MainLayout>
-              <AdminDashboard />
             </MainLayout>
           }
         />

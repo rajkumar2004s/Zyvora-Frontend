@@ -63,7 +63,6 @@ function Register() {
           </div>
 
           <div className="mt-8">
-            {/* Name */}
             <label className="font-semibold">Full Name</label>
 
             <div className="relative mt-2">
@@ -78,7 +77,6 @@ function Register() {
               />
             </div>
 
-            {/* Email */}
             <label className="font-semibold block mt-4">Email</label>
 
             <div className="relative mt-2">
@@ -93,7 +91,6 @@ function Register() {
               />
             </div>
 
-            {/* Password */}
             <label className="font-semibold block mt-4">Password</label>
 
             <div className="relative mt-2">
@@ -121,7 +118,6 @@ function Register() {
               </label>
             </div>
 
-            {/* Register Button */}
             <button
               onClick={register}
               disabled={loading}
